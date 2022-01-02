@@ -49,7 +49,7 @@ function createOption(mass) {
     })
 }
 
-let additionalInfo;
+let additionalInfo = 'долларов США';
 
 function selectedCurr(mass) {
     getInfoEl.addEventListener('click', function (event) {
@@ -73,11 +73,18 @@ function resOutput(currency, rate, scale, date) {
     let money = (+inputMoneyEL.value / rate) * scale;
     const now = new Date(date);
     let dateNow = now.getDate() + '-' + (now.getMonth() + 1) + '-' + now.getFullYear();
-    let info = `Вы можете купить ${money.toFixed(2)} ${currency} за ${inputMoneyEL.value} BYN по курсу ${rate}
+    let info = `Вы можете купить ${money.toFixed(2)} ${changeFirstLetter(currency)} за ${inputMoneyEL.value} BYN по курсу ${rate}
      за ${scale} уе на ${dateNow}`;
 
     resultEL.innerHTML = info;
 }
+
+function changeFirstLetter([...str]) {
+   str[0] = str[0].toLowerCase();
+   return str.join('');
+}
+
+
 
 
 
